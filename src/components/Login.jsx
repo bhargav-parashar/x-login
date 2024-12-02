@@ -34,7 +34,7 @@ const Login = () => {
       <form onSubmit={handleSubmit} className={styles.formContainer}>
         <h1>Login Page</h1>
 
-        {isSubmitted && <p>Welcome,user!</p>}
+        {isSubmitted && <p>Welcome, user</p>}
 
         {!isSubmitted && (
           
