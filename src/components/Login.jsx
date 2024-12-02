@@ -7,50 +7,92 @@ const Login = () => {
     password: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error,setError] = useState("");
-  const handleSubmit = (e)=> {
+  const [error, setError] = useState("");
+  const [showSubmit, setShowSubmit] = useState(true);
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(form.username === "user" && form.password === "password"){
-        setError("");
-        setIsSubmitted(true);
-    }else{  
-        setError("Invalid username or password");
-        setIsSubmitted(false);
+    if (form.username === "user" && form.password === "password") {
+      setShowSubmit(false);
+      setError("");
+      setIsSubmitted(true);
+    } else {
+      setError("Invalid username or password");
+      setIsSubmitted(false);
     }
+    console.log(`Error: ${error}` );
+    console.log(form);
+    console.log(`showSubmit: ${showSubmit}`);
+  };
+  const handleReset = () => {
+    setError(false);
+    setForm({ username: "", password: "" });
+    setShowSubmit(true);
+    setIsSubmitted(false);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className={styles.wrapper}>
+    <div className={styles.wrapper}>
+      <form onSubmit={handleSubmit} className={styles.formContainer}>
         <h1>Login Page</h1>
-        <div>
-          <label for="userName">Username: </label>
-          <input
-            type="text"
-            name=""
-            id="userName"
-            placeholder="Username"
-            value={form.userName}
-            onChange={(e)=>{setForm({...form,username:e.target.value})}}
-            required
-          />
-        </div>
-        <div>
-          <label for="password">Password: </label>
-          <input
-            type="password"
-            name=""
-            id="password"
-            placeholder="Password"
-            value={form.passWord}
-            onChange={(e)=>{setForm({...form,password:e.target.value})}}
-            required
-          />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </div>
-    </form>
+
+        {isSubmitted && <p>Welcome,user!</p>}
+
+        {!isSubmitted && (
+          
+          <div>
+            {error.length > 0 && <p style={{margin:"0px 0px 0px 0px", color:"salmon"}}>Invalid username or password</p>}
+            <div className={styles.formElements}>
+              <label for="userName">Username:</label>
+              <input
+                type="text"
+                id="userName"
+                placeholder="Username"
+                value={form.username}
+                onChange={(e) => {
+                  setForm({ ...form, username: e.target.value });
+                }}
+                required
+              />
+            </div>
+
+            <div className={styles.formElements}>
+              <label for="">Password:</label>
+              <input
+                type="text"
+                id="password"
+                placeholder="Password"
+                value={form.password}
+                onChange={(e) => {
+                  setForm({ ...form, password: e.target.value });
+                }}
+                required
+              />
+            </div>
+            
+          </div>
+          )}
+          <div style={{ width:"100%"}}>
+          {showSubmit && (
+            <div className={styles.buttonWrapper}>
+              <button className={styles.submitButtonElement} type="submit">
+                Submit
+              </button>
+            </div>
+          )}
+          {!showSubmit && (
+            <div className={styles.buttonWrapper}>
+              <button
+                className={styles.submitButtonElement}
+                type="button"
+                onClick={handleReset}
+              >
+                Reset
+              </button>
+            </div>
+          )}
+          </div>
+        
+      </form>
+    </div>
   );
 };
 

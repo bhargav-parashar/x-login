@@ -1,5 +1,49 @@
-.wrapper{
-    display: flex;
-    flex-direction: column;
-   
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 90vh;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid navy;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  width: 250px;
+  height: 270px;
+  position: relative;
+}
+.formElements {
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.submitButtonElement {
+  width: 100%;
+  height: 30px;
+}
+.resetButtonElement {
+  width: 100%;
+  height: 30px;
+}
+.submitButtonElement:hover {
+  cursor: pointer;
+  background-color: #145da0;
+  color: aliceblue;
+}
+.resetButtonElement:hover {
+  cursor: pointer;
+  background-color: #145da0;
+  color: aliceblue;
 }
